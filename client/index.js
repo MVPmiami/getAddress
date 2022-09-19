@@ -22,13 +22,16 @@ class UserInfo {
 
     try {
       console.log(body)
-      const response = await fetch('http://localhost:4000/getaddress', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
+      const response = await fetch(
+        'https://tranquil-earth-25667.herokuapp.com/getaddress',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+          },
+          body: JSON.stringify(body),
         },
-        body: JSON.stringify(body),
-      })
+      )
       const result = await response.json()
       let data = {
         ...result.data.response.GeoObjectCollection.featureMember[0].GeoObject,
@@ -48,3 +51,4 @@ class UserInfo {
 }
 
 let info = new UserInfo()
+info.position()
